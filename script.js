@@ -15,7 +15,9 @@ class Game{
         this.moves = 0;        
     }
     // }
-    static handleClick(id){        
+    static handleClick(id, cell){        
+        console.log(cell);
+        cell.classList.add("player");
         let value = Cell.getValue(id);
         if(value == "") Cell.addInput(id, "x");
         player.moves(id);
@@ -71,5 +73,5 @@ let player = new Player();
     const cells = document.querySelectorAll(".cell");
     cells.forEach(cell => {cell.addEventListener("click", function(cell){
         let id = cell.target.dataset.index;
-        Game.handleClick(id);
+        Game.handleClick(id, cell.target);
 })})
