@@ -3,7 +3,9 @@ class Player{
         this.inputs = [];
     }
     moves(id){
-        if(!player.inputs.includes(id)) this.inputs.push(parseInt(id));
+        const move = parseInt(id)
+        if(!player.inputs.includes(move)) this.inputs.push(move);
+        
         console.log(player.inputs);
     }
 }
@@ -72,6 +74,7 @@ let player = new Player();
 
     const cells = document.querySelectorAll(".cell");
     cells.forEach(cell => {cell.addEventListener("click", function(cell){
+        console.log(player.inputs);
         let id = cell.target.dataset.index;
         Game.handleClick(id, cell.target);
 })})
