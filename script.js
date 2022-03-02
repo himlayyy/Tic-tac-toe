@@ -4,8 +4,7 @@ class Player{
     }
     moves(id){
         const move = parseInt(id)
-        if(!player.inputs.includes(move)) this.inputs.push(move);
-        
+        if(!player.inputs.includes(move)) this.inputs.push(move);        
         console.log(player.inputs);
     }
 }
@@ -14,9 +13,32 @@ class Game{
         this.inputs = [];
         this.won = false;
         this.over = false;
-        this.moves = 0;        
+        this.moves = 0;
+        Game.drawBoard();
+        
     }
-    // }
+    static drawBoard(){
+        console.log("Drew board");
+        let board = document.querySelector("#board");
+        board.innerHTML = `<div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+        <div class="cell" data-index="9"></div>`
+    }
+    
+    static newGame(){
+        let board = document.querySelector("#board");
+        while (board.firstChild) {
+            board.firstChild.remove()
+        }
+        Game.drawBoard();          
+    }
+
     static handleClick(id, cell){        
         console.log(cell);
         cell.classList.add("player");
@@ -35,6 +57,7 @@ class Game{
         if(game.won == true) {
             game.over = true;
             console.log("Game over");
+            Game.newGame();
         };
     }
     static checkWin(playerInputs){
@@ -72,9 +95,9 @@ class Cell{
 let game = new Game();
 let player = new Player();
 
-    const cells = document.querySelectorAll(".cell");
-    cells.forEach(cell => {cell.addEventListener("click", function(cell){
-        console.log(player.inputs);
-        let id = cell.target.dataset.index;
-        Game.handleClick(id, cell.target);
+const cells = document.querySelectorAll(".cell");
+cells.forEach(cell => {cell.addEventListener("click", function(cell){
+    console.log(player.inputs);
+    let id = cell.target.dataset.index;
+    Game.handleClick(id, cell.target);
 })})
