@@ -11,7 +11,13 @@
     grid-gap:3px 3px;    
 }
 .cell{
-    background:blue;   
+    background:blue;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Kalam', cursive;
+    font-size:100px;
+    border-radius:4%;
 }
 .player{
     background-color:green;
