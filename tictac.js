@@ -9,6 +9,8 @@ class Game {
         this.over = false;
         this.totalMoves = 0;
         this.player = new Player();
+        this.other = new Player();
+        this.players = [this.player, this.other];
         Board.drawBoard();
     }
     handleClick(id) {
