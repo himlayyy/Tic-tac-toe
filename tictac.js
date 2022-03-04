@@ -1,10 +1,10 @@
-class Player{
-    constructor(){
+class Player {
+    constructor() {
         this.moves = [];
     }
 }
 class Game {
-    constructor(){
+    constructor() {
         this.usedCells = [];
         this.over = false;
         this.totalMoves = 0;
@@ -12,27 +12,29 @@ class Game {
         Board.drawBoard();
     }
     handleClick(id) {
-        if (Board.getCellVal(id) === "") Board.addCellVal(id, "X");
-        this.newMove(parseInt(id));  
+        if (this.over == true) {
+            Board.disableBoard();
+        }        
+        else{
+            if (Board.getCellVal(id) === "") Board.addCellVal(id, "X");
+            this.newMove(parseInt(id));
 
-        console.log(this.usedCells);
-
-        if (this.totalMoves >= 3){
-            this.checkWin(this.player.moves);
+            if (this.totalMoves >= 3) {
+                this.checkWin(this.player.moves);
+            }
         }
-
     }
-    newMove(id){
+    newMove(id) {
         console.log(this.usedCells.includes(id))
 
-        if(!this.usedCells.includes(id)){
-            this.player.moves.push(id);        
+        if (!this.usedCells.includes(id)) {
+            this.player.moves.push(id);
             this.usedCells.push(id);
             this.totalMoves += 1;
             console.log('new move added');
         }
     }
-    restartGame(){
+    restartGame() {
         this.usedCells.length = 0;
         this.over = false;
         this.totalMoves = 0;
@@ -40,7 +42,7 @@ class Game {
 
         Board.redrawBoard();
     }
-    checkWin(playerMoves){
+    checkWin(playerMoves) {
         console.log("in checkWin");
         const combos =
             [[1, 2, 3],
@@ -52,15 +54,15 @@ class Game {
             [1, 5, 9],
             [3, 5, 7]];
         console.log(playerMoves);
-        combos.forEach(combo =>{
-            if(combo.every(val => playerMoves.includes(val))) {
+        combos.forEach(combo => {
+            if (combo.every(val => playerMoves.includes(val))) {
                 this.over = true;
                 console.log(combo);
                 console.log("You won");
                 Board.disableBoard();
             };
         })
-        
+
     }
 }
 
@@ -83,7 +85,7 @@ class Board {
     }
     static cellListener() {
         const cells = document.querySelectorAll(".cell");
-        cells.forEach(cell => cell.addEventListener("click", (e) =>{
+        cells.forEach(cell => cell.addEventListener("click", (e) => {
             clicked(e.target);
         }));
     }
@@ -107,12 +109,12 @@ class Board {
         })
         Board.drawBoard();
     }
-    static disableBoard(){
+    static disableBoard() {
         let cells = document.querySelectorAll("cell")
         cells.forEach(cell => cell.removeEventListener("click", clicked));
     }
 }
-function clicked(cell){
+function clicked(cell) {
     const id = cell.getAttribute("data-index");
     game.handleClick(id);
 }
