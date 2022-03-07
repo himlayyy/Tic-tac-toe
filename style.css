@@ -1,6 +1,6 @@
 html{
     font-family: 'Jura', sans-serif;
-    font-size:40px;
+    font-size:30px;
 }
 .content{
     display:flex;
@@ -10,22 +10,21 @@ html{
 }
 #board{
     display:grid;
-    grid-template-columns: repeat(3,150px);
-    grid-template-rows:repeat(3,150px);
-    grid-gap: 4px 4px;
-    margin:40px;
-    margin-bottom:20px;
+    grid-template-columns: repeat(3,130px);
+    grid-template-rows:repeat(3,130px);
+    grid-gap: 2px 2px;
+    margin:20px 40px;
 }
 #title{
-    margin-top: 30px;
+    margin:5px;
 }
 #restart,
 #result{
-    margin:20px;
+    margin:10px;
 }
 .box {
-    --b:5;   /* border length (without unit!!)*/
-    --c:20;  /* the cube perspective (without unit!!)*/
+    --b:1;   /* border length (without unit!!)*/
+    --c:15;  /* the cube perspective (without unit!!)*/
     --g:calc((var(--c) - var(--b))*0.707px); /* 0.707 = cos(45deg) = sin(45deg) */
     margin: 10px;
     display: inline-block;
@@ -51,18 +50,18 @@ html{
 
 }
 button{
-font-family: inherit; /* 1 */
-  font-size: 40px; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
-  overflow: visible;
-  text-transform: none;
-  -webkit-appearance: button;
-  --c:2;
-  border-width:calc(var(--c)*1px) calc(var(--c)*1px) calc(var(--b)*1px) calc(var(--b)*1px) ;
-  border-image-slice: var(--c) var(--c) var(--b) var(--b);
-  border-image-source:linear-gradient(-45deg,transparent var(--g),#d6dbe4 0 calc(100% - var(--g)),transparent 0);
-  background:none;
+    font-family: inherit; /* 1 */
+    font-size: 30px; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    --c:2;
+    border-width:calc(var(--c)*1px) calc(var(--c)*1px) calc(var(--b)*1px) calc(var(--b)*1px) ;
+    border-image-slice: var(--c) var(--c) var(--b) var(--b);
+    border-image-source:linear-gradient(-45deg,transparent var(--g),#d6dbe4 0 calc(100% - var(--g)),transparent 0);
+    background:none;
 }
 button:hover{
     border-image-source: linear-gradient(-45deg,transparent var(--g),black 0 calc(100% - var(--g)),transparent 0);
