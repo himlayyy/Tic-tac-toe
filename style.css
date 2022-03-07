@@ -10,31 +10,78 @@ html{
 }
 #board{
     display:grid;
-    grid-template-columns:repeat(3,100px);
-    grid-template-rows:repeat(3,100px);
-    grid-gap: 12px 12px;
+    grid-template-columns: repeat(3,150px);
+    grid-template-rows:repeat(3,150px);
+    grid-gap: 4px 4px;
     margin:40px;
+    margin-bottom:20px;
 }
 #title{
     margin-top: 30px;
 }
+#restart,
+#result{
+    margin:20px;
+}
+.box {
+    --b:5;   /* border length (without unit!!)*/
+    --c:20;  /* the cube perspective (without unit!!)*/
+    --g:calc((var(--c) - var(--b))*0.707px); /* 0.707 = cos(45deg) = sin(45deg) */
+    margin: 10px;
+    display: inline-block;
+    border-style:solid;
+  }
 .cell{
-    /* background:blue; */
-    box-sizing:border-box;
-    border: 1px solid #F0B193;
     display:flex;
     align-items:center;
     justify-content: center;
     align-content: center;
     font-size: 80px;
-    border-radius: 5%;
-    box-shadow: 10px 24px 21px -11px rgb(226 98 40 / 75%);
-    -webkit-box-shadow: 4px 5px 5px 4px rgb(226 98 40 / 75%);
-    -moz-box-shadow: 10px 24px 21px -11px rgba(226,98,40,0.75);
+    text-align:center;
+    border-width:calc(var(--c)*1px) calc(var(--c)*1px) calc(var(--b)*1px) calc(var(--b)*1px);border-image-slice: var(--c) var(--c) var(--b) var(--b);border-image-source: linear-gradient(-45deg,transparent var(--g),#eae9e9 0 calc(100% - var(--g)),transparent 0);
 }
-.player{
-    /* border: 3px solid #ea5915; */
-    background-color: #ea5915;
-    /* background-color:green; */
-    /* text-align:center; */
+.player-x{    
+    border-image-source: linear-gradient(-45deg,transparent var(--g),#e76423 0 calc(100% - var(--g)),transparent 0);
+}
+.player-o{
+    border-image-source: linear-gradient(-45deg,transparent var(--g),#2f405a 0 calc(100% - var(--g)),transparent 0);
+}
+.hover{
+    border-image-source: linear-gradient(-45deg,transparent var(--g),#d6dbe4 0 calc(100% - var(--g)),transparent 0);
+
+}
+button{
+font-family: inherit; /* 1 */
+  font-size: 40px; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  --c:2;
+  border-width:calc(var(--c)*1px) calc(var(--c)*1px) calc(var(--b)*1px) calc(var(--b)*1px) ;
+  border-image-slice: var(--c) var(--c) var(--b) var(--b);
+  border-image-source:linear-gradient(-45deg,transparent var(--g),#d6dbe4 0 calc(100% - var(--g)),transparent 0);
+  background:none;
+}
+button:hover{
+    border-image-source: linear-gradient(-45deg,transparent var(--g),black 0 calc(100% - var(--g)),transparent 0);
+}
+
+button:active{
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+	}
+
+	70% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0.95);
+	}
 }
